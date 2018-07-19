@@ -1,5 +1,7 @@
 package com.lanqiao.shopping.dao;
 
-public class UsersDao {
+import com.lanqiao.shopping.vo.Users;
 
+public interface UsersDao {
+     public boolean register(Users users);
 }
