@@ -1,4 +1,4 @@
-package com.lanqiao.shopping.util;
+package com.lanqiao.shopping.utils;
 
 
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
 
 
 
@@ -93,6 +94,26 @@ public class DBHepler {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static ResultSet commomQuery(String sql,Object...obj) {
+		try {
+			Connection conn = getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//处理问题传值
+			for (int i = 0; i < obj.length; i++) {
+				ps.setObject(i+1, obj[i]);
+			}
+			//结果集
+			 ResultSet executeQuery = ps.executeQuery();
+			
+			
+			return executeQuery;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }
