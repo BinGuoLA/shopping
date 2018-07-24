@@ -17,7 +17,7 @@
 			$.post("CategoryServlet",{method:"findCategoryByCid"},function(msg){
 				var CategoryList = $.parseJSON(msg);//json字符串转json数组对象
 				$.each(CategoryList,function(i,category){
-					$("#nav_ul").append("<li><a href='ProductServlet?method=plistbycid&page=1&cid='"+category.cid+"'>"+category.cname+"</a></li>");
+					$("#nav_ul").append("<li><a href='ProductServlet?method=plistbycid&page=1&cid="+category.cid+"'>"+category.cname+"</a></li>");
 				});	
 		        	});
 
