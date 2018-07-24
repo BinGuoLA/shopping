@@ -3,6 +3,7 @@ package com.lanqiao.shopping.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.catalina.User;
 
 import com.lanqiao.shopping.dao.UsersDao;
 import com.lanqiao.shopping.utils.DBHepler;
@@ -20,19 +21,30 @@ public class UsersDaoImpl implements UsersDao{
 	}
 
 	@Override
-	public boolean login(Users users) {
+	public Users login(Users user) {
 		String sql = "select * from users where username = ? and password = ?";
-		Object[] obj = {users.getUsername(),users.getPassword()};
+		Object[] obj = {user.getUsername(),user.getPassword()};
 		ResultSet rs = DBHepler.commomQuery(sql, obj);
 		try {		
 		if(rs.next()) {
-			return true;
+			Users users = new Users();
+			users.setBirthday(rs.getString("BIRTHDAY"));
+			users.setCode(rs.getString("code"));
+			users.setEmail(rs.getString("email"));
+			users.setName(rs.getString("name"));
+			users.setPassword(rs.getString("password"));
+			users.setSex(rs.getString("sex"));
+			users.setState(rs.getInt("state"));
+			users.setTelephone(rs.getString("telephone"));
+			users.setUsername(rs.getString("username"));
+			users.setUuid(rs.getString("uuid"));
+			return users;
 		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container-fluid">
 
 			<!--
@@ -13,9 +14,28 @@
 				</div>
 				<div class="col-md-3" align="right" style="padding-top:20px;line-height: 35px;">
 					<ol class="list-inline">
-						<li><a href="${pageContext.request.contextPath}/UserServlet?method=loginUI">登录</a></li>
-						<li><a href="${pageContext.request.contextPath}/UserServlet?method=registerUI">注册</a></li>
-						<li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
+
+
+
+				<c:choose>
+
+					<c:when test="${existusers == null}">
+						<!--如果 -->
+
+					
+					<li><a href="${pageContext.request.contextPath}/UserServlet?method=loginUI">登录</a></li>
+					<li><a href="${pageContext.request.contextPath}/UserServlet?method=registerUI">注册</a></li>
+						</c:when>
+					<c:otherwise>
+						<!--否则 -->					
+						<li><a href="#">${existusers.name}</a></li>
+						<li><a href="${pageContext.request.contextPath}/UserServlet?method=quit">退出</a></li>
+					</c:otherwise>
+
+				</c:choose>
+
+
+				<li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
 						<li><a href="${pageContext.request.contextPath}/jsp/order_list.jsp">我的订单</a></li>
 					</ol>
 				</div>
@@ -36,16 +56,15 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">首页</a>
+							<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">首页</a>
 						</div>
 
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="${pageContext.request.contextPath}/jsp/product_list.jsp">手机数码<span class="sr-only">(current)</span></a></li>
-								<li><a href="#">电脑办公</a></li>
-								<li><a href="#">电脑办公</a></li>
-								<li><a href="#">电脑办公</a></li>
+							 <c:forEach items="${clist}" var="item">
+								<li><a href="${pageContext.request.contextPath}/ProductServlet?method=plistbycid&page=1&cid=${item.cid}">${item.cname}</a></li>
+								</c:forEach>
 							</ul>
 							<form class="navbar-form navbar-right" role="search">
 								<div class="form-group">

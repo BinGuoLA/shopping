@@ -17,7 +17,7 @@ public class UsersServiceImpl implements UsersService{
 		SendJMail.sendMail(users.getEmail(), emailMsg);
 	}
 	@Override
-	public boolean login(Users users) {
+	public Users login(Users users) {
 		return userDao.login(users);
 	}
 	

@@ -37,119 +37,41 @@
 					<li><a href="#">首页</a></li>
 				</ol>
 			</div>
-
+	<c:forEach items="${pagebean.list}" var="pagebean">
 			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10001.jpg" width="170" height="170" style="display: inline-block;">
+				<a href="${pageContext.request.contextPath}/ProductServlet?pid=${pagebean.pid}&method=pinfo">
+					<img src="${pageContext.request.contextPath}/${pagebean.pimage}" width="170" height="170" style="display: inline-block;">
 				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>冬瓜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
+				<p><a href="${pageContext.request.contextPath}/ProductServlet?pid=${pagebean.pid}&method=pinfo" style='color:green'>${pagebean.pname}</a></p>
+				<p><font color="#FF0000">商城价：&yen;${pagebean.market_price}</font></p>
 			</div>
-
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10002.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>圆白菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10003.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>甜玉米</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10004.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>胡萝卜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10005.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>芹菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10006.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>韭菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>香菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>土豆</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>香菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>土豆</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>香菜</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
-			<div class="col-md-2">
-				<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-					<img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170" style="display: inline-block;">
-				</a>
-				<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>土豆</a></p>
-				<p><font color="#FF0000">商城价：&yen;299.00</font></p>
-			</div>
+	</c:forEach>
+			
 
 		</div>
 
 		<!--分页 -->
+		<c:if test="${pagebean.totalPage != 0}">
 		<div style="width:380px;margin:0 auto;margin-top:50px;">
 			<ul class="pagination" style="text-align:center; margin-top:10px;">
-				<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
+			
+				<c:if test="${pagebean.page != 1}">			
+					<li><a href="ProductServlet?method=plistbycid&page=${pagebean.page-1}&cid=${param.cid}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+				</c:if>
+				<c:forEach var="i" begin="1" end="${pagebean.totalPage}">
+				<li><a href="ProductServlet?method=plistbycid&page=${i}&cid=${param.cid}"><c:out value="${i}"/></a></li>
+				</c:forEach>
+				
+				<c:if test="${pagebean.page != pagebean.totalPage}">	
 				<li>
-					<a href="#" aria-label="Next">
+					<a href="ProductServlet?method=plistbycid&page=${pagebean.page+1}&cid=${param.cid}" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>
+				</c:if>
 			</ul>
 		</div>
+		</c:if>
 		<!-- 分页结束=======================        -->
 
 		<!--

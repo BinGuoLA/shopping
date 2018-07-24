@@ -6,7 +6,7 @@ public interface UsersService {
 	
 	public void register(Users users);
 	
-	public boolean login(Users users);
+	public Users login(Users users);
 	
 	public Users active(String activeCode);
 
