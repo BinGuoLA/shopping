@@ -8,6 +8,6 @@
 <title>Document</title>
 </head>
 <body>
-	<h1>关于我们</h1>
+	<h1>激活成功，请<a href="http://localhost:8080/shopping/UserServlet?method=loginUI">登录</a></h1>
 </body>
 </html>

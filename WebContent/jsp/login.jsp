@@ -32,15 +32,18 @@ font {
     font-weight: normal;
     padding-right:17px;
 }
+#logininfo{
+	color: red;
+	margin-left: 20px;
+	font-size: 20px;
+}
  </style>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 	
-
 	
-			<%@ include file="head.jsp" %>
 	
-
 	
 <div class="container"  style="width:100%;height:460px;background:#FF2C4C url('${pageContext.request.contextPath}/img/loginbg.jpg') no-repeat;">
 <div class="row"> 
@@ -51,20 +54,20 @@ font {
 	<div class="col-md-5">
 				<div style="width:440px;border:1px solid #E7E7E7;padding:20px 0 20px 30px;border-radius:5px;margin-top:60px;background:#fff;">
 				<font>会员登录</font>USER LOGIN
-
+				<span id="logininfo">${logininfo}</span>
 				<div>&nbsp;</div>
-<form class="form-horizontal" action="${pageContext.request.contextPath}/UserServlet?method=login">
-  <input type="hidden" name="method" value="login"/>
+<form class="form-horizontal" action="${pageContext.request.contextPath}/UserServlet?method=userLogin" method="post">
+  
  <div class="form-group">
     <label for="username" class="col-sm-2 control-label">用户名</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="username" placeholder="请输入用户名" name="loginname">
+      <input type="text" class="form-control" name="username" id="username" value="${remUser}" placeholder="请输入用户名">
     </div>
   </div>
    <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
     <div class="col-sm-6">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码" name="loginpassword">
+      <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="请输入密码">
     </div>
   </div>
    <div class="form-group">
@@ -81,11 +84,11 @@ font {
     <div class="col-sm-offset-2 col-sm-10">
       <div class="checkbox">
         <label>
-          <input type="checkbox"> 自动登录
+         <input type="checkbox" name="autoLogin" value="yes"> 自动登录
         </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label>
-          <input type="checkbox"> 记住用户名
-        </label>
+		<input type="checkbox" name="remUser" value="yes"> 记住用户名
+ 		</label>
       </div>
     </div>
   </div>

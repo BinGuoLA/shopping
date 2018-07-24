@@ -38,9 +38,7 @@
 	</head>
 
 	<body>
-
-		
-			<%@ include file="head.jsp" %>
+	<%@ include file="header.jsp" %>
 
 
 		<div class="container">
@@ -58,30 +56,27 @@
 								<th>小计</th>
 								<th>操作</th>
 							</tr>
-						
-						<c:forEach items="${cart.map}" var="map" > 
 							<tr class="active">
 								<td width="60" width="40%">
 									<input type="hidden" name="id" value="22">
-									<img src="${pageContext.request.contextPath}/${map.value.product.pimage}" width="70" height="60">
+									<img src="${pageContext.request.contextPath}/products/2/dadonggua.jpg" width="70" height="60">
 								</td>
 								<td width="30%">
-									<a target="_blank">${map.value.product.pname}</a>
+									<a target="_blank"> 有机蔬菜      大冬瓜...</a>
 								</td>
 								<td width="20%">
-									${map.value.product.shop_price}
+									￥298.00
 								</td>
 								<td width="10%">
-									<input type="text" name="quantity" value="${map.value.count}" maxlength="4" size="10">
+									<input type="text" name="quantity" value="1" maxlength="4" size="10">
 								</td>
 								<td width="15%">
-									<span class="subtotal">${map.value.subtotal}</span>
+									<span class="subtotal">￥596.00</span>
 								</td>
 								<td>
 									<a href="javascript:;" class="delete">删除</a>
 								</td>
 							</tr>
-						 </c:forEach> 
 						</tbody>
 					</table>
 				</div>
@@ -91,7 +86,7 @@
 				<div style="text-align:right;">
 					<em style="color:#ff6600;">
 				登录后确认是否享有优惠&nbsp;&nbsp;
-			</em> 赠送积分: <em style="color:#ff6600;"><c:out value="${cart.total}"></c:out></em>&nbsp; 商品金额: <strong style="color:#ff6600;"><c:out value="${cart.total}"></c:out></strong>
+			</em> 赠送积分: <em style="color:#ff6600;">596</em>&nbsp; 商品金额: <strong style="color:#ff6600;">￥596.00元</strong>
 				</div>
 				<div style="text-align:right;margin-top:10px;margin-bottom:10px;">
 					<a href="${pageContext.request.contextPath}/jsp/order_info.jsp" id="clear" class="clear">清空购物车</a>

@@ -26,10 +26,7 @@
 	</head>
 
 	<body>
-
-	<%@ include file="head.jsp" %>
-
-
+	<%@ include file="header.jsp" %>
 		<div class="container">
 			<div class="row">
 
@@ -139,7 +136,7 @@
 
 		</div>
 
-		<%@ include file="foot.jsp" %>
+	<%@ include file="foot.jsp" %>
 
 	</body>
 
