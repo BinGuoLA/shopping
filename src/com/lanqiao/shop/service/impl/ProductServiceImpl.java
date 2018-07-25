@@ -9,10 +9,16 @@ import com.lanqiao.shop.service.ProductService;
 
 public class ProductServiceImpl implements ProductService {
 	ProductDao productDao = new ProductDaoImpl();
+
 	@Override
-	public List<Product> findProductByCid(String cid) {
-		
-		return null;
+	public List<Product> findHot() {
+		return productDao.findHot();
 	}
+
+	@Override
+	public List<Product> findNew() {
+		return productDao.findNew();
+	}
+	
 
 }

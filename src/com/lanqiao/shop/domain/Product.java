@@ -5,10 +5,10 @@ import java.util.Date;
 public class Product {
 	private String pid;
 	private String pname;
-	private double market_price;
-	private double shop_price;
+	private String market_price;
+	private String shop_price;
 	private String pimage;
-	private Date pdate;
+	private String pdate;
 	private int is_hot;
 	private String pdesc;
 	private int pflag;//是否下架  默认:0没有
@@ -25,16 +25,16 @@ public class Product {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-	public double getMarket_price() {
+	public String getMarket_price() {
 		return market_price;
 	}
-	public void setMarket_price(double market_price) {
+	public void setMarket_price(String market_price) {
 		this.market_price = market_price;
 	}
-	public double getShop_price() {
+	public String getShop_price() {
 		return shop_price;
 	}
-	public void setShop_price(double shop_price) {
+	public void setShop_price(String shop_price) {
 		this.shop_price = shop_price;
 	}
 	public String getPimage() {
@@ -43,10 +43,10 @@ public class Product {
 	public void setPimage(String pimage) {
 		this.pimage = pimage;
 	}
-	public Date getPdate() {
+	public String getPdate() {
 		return pdate;
 	}
-	public void setPdate(Date pdate) {
+	public void setPdate(String pdate) {
 		this.pdate = pdate;
 	}
 	public int getIs_hot() {
@@ -77,7 +77,7 @@ public class Product {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Product(String pid, String pname, double market_price, double shop_price, String pimage, Date pdate,
+	public Product(String pid, String pname, String market_price, String shop_price, String pimage, String pdate,
 			int is_hot, String pdesc, int pflag, String cid) {
 		super();
 		this.pid = pid;
@@ -91,5 +91,5 @@ public class Product {
 		this.pflag = pflag;
 		this.cid = cid;
 	}
-
+	
 }

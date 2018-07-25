@@ -5,5 +5,6 @@ import java.util.List;
 import com.lanqiao.shop.domain.Product;
 
 public interface ProductService {
-	public List<Product> findProductByCid(String cid);
+	public List<Product> findHot();
+	public List<Product> findNew();
 }

@@ -11,7 +11,35 @@
 		<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
 	</head>
-	 
+	  <script type="text/javascript">
+	$(function(){
+		//ajax 找最热商品
+			$.post("ProductServlet",{method:"findHot"},function(msg){
+				var ProductHot = $.parseJSON(msg);//json字符串转json数组对象
+				$.each(ProductHot,function(i,product){
+					 $("#findhot").append("<div class='col-md-2' style='text-align:center;height:200px;padding:10px 0px;'><a href='#'><img src='"+product.pimage+"' width='130' height='130' style='display: inline-block;'></a>"+
+					"<p><a href='${pageContext.request.contextPath}/jsp/product_info.jsp' style='color:#666'>"+product.pname+"</a></p>"+
+				"<p><font color='#E4393C' style='font-size:16px'>&yen;"+product.market_price+"</font></p></div>" 
+			)
+					
+				});	
+		        	}); 
+			
+			//ajax 找最新商品
+			$.post("ProductServlet",{method:"findNew"},function(msg){
+				var ProductHot = $.parseJSON(msg);//json字符串转json数组对象
+				$.each(ProductHot,function(i,product){
+					 $("#findnew").append("<div class='col-md-2' style='text-align:center;height:200px;padding:10px 0px;'>"+
+					"<a href='${pageContext.request.contextPath}/jsp/product_info.jsp'><img src='"+product.pimage+"' width='130' height='130' style='display: inline-block;'>"+
+					"</a><p><a href='${pageContext.request.contextPath}/jsp/product_info.jsp' style='color:#666'>"+product.pname+"</a></p>"+
+				"<p><font color='#E4393C' style='font-size:16px'>&yen;"+product.market_price+"</font></p></div>" 
+			)
+					
+				});	
+		        	}); 
+
+	}); 
+</script>
 	<body>
 		<%@ include file="header.jsp" %>
 
@@ -77,77 +105,10 @@
 							<img src="products/hao/middle01.jpg" width="516px" height="200px" style="display: inline-block;">
 						</a>
 					</div>
-				
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-	
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-
-					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
+				<div id="findhot">
 					
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-	
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-
-					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-	
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
+				</div>
+					
 				</div>
 			</div>
 			<!--
@@ -174,76 +135,7 @@
 							<img src="products/hao/middle01.jpg" width="516px" height="200px" style="display: inline-block;">
 						</a>
 					</div>
-				
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-	
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-
-					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-					
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-	
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-
-					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-	
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
-					</div>
-
-					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+					<div id="findnew">
 					</div>
 				</div>
 			</div>			
