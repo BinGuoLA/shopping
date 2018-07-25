@@ -20,7 +20,7 @@ public class UserDaoImpl implements UsersDao {
 		DBHepler.commom(sql, obj);
 		
 	}
-	//用户激活，通过激活码查找对象
+
 	@Override
 	public Users  userActive(String code) {
 		Connection conn=null;
@@ -33,7 +33,7 @@ public class UserDaoImpl implements UsersDao {
 			ps.setString(1, code);
 			rs=ps.executeQuery();
 			if(rs.next()) {
-				//将查找到的数据存在Users对象返回
+			
 				Users users=new Users();
 				users.setBirthday(rs.getDate("birthday"));
 				users.setCode(rs.getString("code"));
@@ -80,7 +80,7 @@ public class UserDaoImpl implements UsersDao {
 			ps.setString(2,password);
 			rs=ps.executeQuery();
 			if(rs.next()) {
-				//将查找到的数据存在Users对象返回
+				
 				Users users=new Users();
 				users.setBirthday(rs.getDate("birthday"));
 				users.setCode(rs.getString("code"));

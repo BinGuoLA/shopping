@@ -15,6 +15,7 @@ import com.lanqiao.shop.service.impl.CategoryServiceImpl;
 import com.lanqiao.shop.web.base.BaseServlet;
 
 import net.sf.json.JSONArray;
+import redis.clients.jedis.Jedis;
 
 
 @WebServlet("/CategoryServlet")
@@ -22,10 +23,23 @@ public class CategoryServlet extends BaseServlet {
 	CategoryService categoryService = new CategoryServiceImpl();
 	
 	public void findCategoryByCid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
 		response.setContentType("text/html;charset=utf-8");//设置ajax乱码
-		List<Category> cList = categoryService.finAll();
-		JSONArray jsonArray =  JSONArray.fromObject(cList);
-		System.out.println("jsonArray："+jsonArray);
-		response.getWriter().print(jsonArray);
+		
+		Jedis jedis = new Jedis("localhost");
+		
+		String jedis_cList = jedis.get("jedis_cList");
+		
+		if(jedis_cList == null) {
+			System.out.println("从数据库中从获取分类");
+			List<Category> cList = categoryService.finAll();
+			JSONArray jsonArray =  JSONArray.fromObject(cList);
+			jedis.set("jedis_cList", jsonArray.toString());
+			response.getWriter().print(jsonArray);
+		}else {
+			System.out.println("从jedis从获取分类");
+			response.getWriter().print(jedis_cList);
+		}
+		
 	}
 }
