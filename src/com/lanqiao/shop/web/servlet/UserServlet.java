@@ -131,7 +131,7 @@ public class UserServlet extends BaseServlet {
 						ck.setMaxAge(0);
 						response.addCookie(ck);
 					}
-					
+				
 					seesion.setAttribute("username", users.getName());
 					return "/jsp/index.jsp";
 				}else {
@@ -152,6 +152,7 @@ public class UserServlet extends BaseServlet {
 			Cookie ck = new Cookie("autoLogin","");
 			ck.setMaxAge(0);
 			response.addCookie(ck);
+			
 			return "/jsp/index.jsp";
 		}
 	

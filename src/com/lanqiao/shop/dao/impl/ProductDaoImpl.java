@@ -65,6 +65,43 @@ public class ProductDaoImpl implements ProductDao{
 			}
 			return pnlist;
 	}
+	
+	public int totalRecords(String cid) throws Exception{
+		String sql = "select count(*) from product where cid = ?";
+		Object[] obj = {cid};
+		int totalRecord = 0;
+		
+			
+			ResultSet rs = DBHepler.commomQuery(sql, obj);
+			if(rs.next()) {
+				totalRecord = rs.getInt(1);
+			}
+		
+		return totalRecord;
+	}
+	
+	public List<Product> findProductsByCidWithPage(String cid,int startIndex,int endIndex)throws Exception{
+		
+		List<Product> productList = new ArrayList<Product>();
+			String sql = "select * from (select rownum rn ,p.* from product p where cid = ?) p1 where rn>=? and rn<=?";
+			Object[] obj = {cid,startIndex,endIndex};
+			ResultSet rs = DBHepler.commomQuery(sql, obj);
+			while(rs.next()) {
+				Product product = new Product();
+				product.setIs_hot(rs.getInt("is_hot"));
+				product.setMarket_price(rs.getString("market_price"));
+				product.setPdate(rs.getString("pdate"));
+				product.setPdesc(rs.getString("pdesc"));
+				product.setPflag(rs.getInt("pflag"));
+				product.setPid(rs.getString("pid"));
+				product.setPimage(rs.getString("pimage"));
+				product.setPname(rs.getString("pname"));
+				product.setShop_price(rs.getString("shop_price"));
+				productList.add(product);
+			}
+		
+		return productList;
+	}
 
 	
 

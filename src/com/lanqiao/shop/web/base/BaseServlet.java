@@ -30,7 +30,7 @@ public class BaseServlet extends HttpServlet {
 			try {
 				Method md=this.getClass().getMethod(method, HttpServletRequest.class,HttpServletResponse.class);
 				
-				String path=(String) md.invoke(this, request,response);
+				String path=(String)md.invoke(this, request,response);
 				
 				if(path==null) {
 					System.out.println("Â·¾¶Îª¿Õ");

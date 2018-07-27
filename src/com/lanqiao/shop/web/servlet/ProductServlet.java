@@ -13,6 +13,7 @@ import com.lanqiao.shop.domain.Category;
 import com.lanqiao.shop.domain.Product;
 import com.lanqiao.shop.service.ProductService;
 import com.lanqiao.shop.service.impl.ProductServiceImpl;
+import com.lanqiao.shop.utils.PageUtils;
 import com.lanqiao.shop.web.base.BaseServlet;
 
 import net.sf.json.JSONArray;
@@ -21,6 +22,7 @@ import redis.clients.jedis.Jedis;
 @WebServlet("/ProductServlet")
 public class ProductServlet extends BaseServlet {
 	ProductService productService = new ProductServiceImpl();
+	//Jedis jedis = new Jedis("127.0.0.1",6379,1000);
 	Jedis jedis = new Jedis("localhost");
 	public String findProductByCid(HttpServletRequest request, HttpServletResponse response) {
 		String cid = request.getParameter("cid");
@@ -32,26 +34,30 @@ public class ProductServlet extends BaseServlet {
 		response.setContentType("text/html;charset=utf-8");// 设置ajax乱码
 
 
-		String jedis_phList = jedis.get("phList");
+		/*String jedis_phList = jedis.get("phList");
 
 		try {
 			if (jedis_phList == null) {
-				System.out.println("从数据库中从获取最热");
+				System.out.println("从数据库中从获取最热");*/
 				List<Product> phList = productService.findNew();
 				JSONArray jsonArray = JSONArray.fromObject(phList);
-				jedis.set("phList", jsonArray.toString());
+				//jedis.set("phList", jsonArray.toString());
 
-				response.getWriter().print(jsonArray);
+				try {
+					response.getWriter().print(jsonArray);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-			} else {
+			/*} else {
 				System.out.println("从jedis从获取最热");
 				response.getWriter().print(jedis_phList);
 			}
-			System.out.println(jedis_phList);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	public void findNew(HttpServletRequest request, HttpServletResponse response) {
@@ -59,24 +65,41 @@ public class ProductServlet extends BaseServlet {
 
 	
 
-		String jedis_pnList = jedis.get("pnList");
-
+		/*String jedis_pnList = jedis.get("pnList");
+System.out.println("jedis_pnList:"+jedis_pnList);
 		try {
 			if (jedis_pnList == null) {
-				System.out.println("从数据库中从获取最新");
+				System.out.println("从数据库中从获取最新");*/
 				List<Product> pnList = productService.findHot();
 				JSONArray jsonArray = JSONArray.fromObject(pnList);
-				jedis.set("pnList", jsonArray.toString());
-				response.getWriter().print(jsonArray);
-			} else {
+				//jedis.set("pnList", jsonArray.toString());
+				try {
+					response.getWriter().print(jsonArray);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		/*	} else {
 				System.out.println("从jedis从获取最新");
 				response.getWriter().print(jedis_pnList);
 			}
-			
-			System.out.println(jedis_pnList);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+	}
+	
+	public String findProductByCidWithPage(HttpServletRequest request, HttpServletResponse response){
+		String cid = request.getParameter("cid");
+		String curPageNo = request.getParameter("num");
+		
+		try {
+			PageUtils pageUtils = productService.findProductByCidWithPage(cid, Integer.valueOf(curPageNo));
+			request.setAttribute("page", pageUtils);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+		return "/jsp/product_list.jsp";
+	} 
 
 }

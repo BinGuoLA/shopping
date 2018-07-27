@@ -26,20 +26,20 @@ public class CategoryServlet extends BaseServlet {
 		
 		response.setContentType("text/html;charset=utf-8");//设置ajax乱码
 		
-		Jedis jedis = new Jedis("localhost");
+		/*Jedis jedis = new Jedis("localhost");
 		
-		String jedis_cList = jedis.get("jedis_cList");
+		String jedis_cList = jedis.get("cList");
 		
 		if(jedis_cList == null) {
-			System.out.println("从数据库中从获取分类");
+			System.out.println("从数据库中从获取分类");*/
 			List<Category> cList = categoryService.finAll();
 			JSONArray jsonArray =  JSONArray.fromObject(cList);
-			jedis.set("jedis_cList", jsonArray.toString());
+			//jedis.set("cList", jsonArray.toString());
 			response.getWriter().print(jsonArray);
-		}else {
-			System.out.println("从jedis从获取分类");
-			response.getWriter().print(jedis_cList);
-		}
+//		}else {
+//			System.out.println("从jedis从获取分类");
+//			response.getWriter().print(jedis_cList);
+//		}
 		
 	}
 }

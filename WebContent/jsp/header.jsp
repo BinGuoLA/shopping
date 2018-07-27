@@ -13,15 +13,15 @@
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
 	</head>
  <script type="text/javascript">
-	$(function(){
+	 $(function(){
 			$.post("CategoryServlet",{method:"findCategoryByCid"},function(msg){
 				var CategoryList = $.parseJSON(msg);//json字符串转json数组对象				
 				$.each(CategoryList,function(i,category){
-					$("#nav_ul").append("<li><a href='ProductServlet?method=plistbycid&page=1&cid="+category.cid+"'>"+category.cname+"</a></li>");
+					$("#nav_ul").append("<li><a href='ProductServlet?method=findProductByCidWithPage&num=1&cid="+category.cid+"'>"+category.cname+"</a></li>");
 				});	
 		        	});
 
-	})
+	}) 
 </script>
 	<body>
 
