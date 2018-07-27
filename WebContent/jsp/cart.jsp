@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ page  import= "com.lanqiao.shop.domain.*"%>
 <!doctype html>
 <html>
 
@@ -37,7 +38,30 @@
 			}
 		</style>
 	</head>
+<script type="text/javascript">
+	function updateCart(obj){
+		var upid = obj.getAttribute("upid");
+		var count = obj.value;
+		var subupid = 'sub'+upid;
+		if(count < 1){
+			alert('不能小于1！');
+			return false;
+		}
+		  $.post("CartServlet?method=updateCart",{pid:upid,count:count},function(msg){
+			  var updateProduct = $.parseJSON(msg);//json字符串转json数组对象
+			
+				var subtotal  = updateProduct[0]['map'][upid]['subtotal'];
+				var total  = updateProduct[0]['total'];
+				
+				$('#points').html(total);
+				$('#total').html(total);
+				$('#'+subupid).html(subtotal);
+		 });
+		  
+		
+	}
 
+</script>
 	<body>
 	<%@ include file="header.jsp" %>
 
@@ -60,7 +84,7 @@
 							<c:forEach items="${cart.map}" var="map" > 
 							<tr class="active">
 								<td width="60" width="40%">
-									<input type="hidden" name="id" value="22">
+									<input type="hidden" name="pid" value="22">
 									<img src="${pageContext.request.contextPath}/${map.value.product.pimage}" width="70" height="60">
 								</td>
 								<td width="30%">
@@ -70,10 +94,10 @@
 									${map.value.product.shop_price}
 								</td>
 								<td width="10%">
-									<input type="text" name="quantity" value="${map.value.count}" maxlength="4" size="10">
+									<input type="text" name="count" id="count" value="${map.value.count}" upid="${map.value.product.pid}" maxlength="4" size="10" onblur="updateCart(this)"/>
 								</td>
 								<td width="15%">
-									<span class="subtotal">${map.value.subtotal}</span>
+									<span class="subtotal" id="sub${map.value.product.pid}">${map.value.subtotal}</span>
 								</td>
 								<td>
 									<a href="CartServlet?method=delCart&pid=${map.value.product.pid}" class="delete">删除</a>
@@ -89,7 +113,7 @@
 				<div style="text-align:right;">
 					<em style="color:#ff6600;">
 				登录后确认是否享有优惠&nbsp;&nbsp;
-			</em> 赠送积分: <em style="color:#ff6600;"><c:out value="${cart.total}"></c:out></em>&nbsp; 商品金额: <strong style="color:#ff6600;"><c:out value="${cart.total}"></c:out></strong>
+			</em> 赠送积分: <em style="color:#ff6600;"><span id="points"><c:out value="${cart.total}"></c:out></span></em>&nbsp; 商品金额: <strong style="color:#ff6600;"><span id="total"><c:out value="${cart.total}"></c:out></span></strong>
 				</div>
 				<div style="text-align:right;margin-top:10px;margin-bottom:10px;">
 					<a href="${pageContext.request.contextPath}/CartServlet?method=clearCart" id="clear" class="clear">清空购物车</a>

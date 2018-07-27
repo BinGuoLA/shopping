@@ -56,7 +56,7 @@
 						<form action="CartServlet?method=addCart" method="post">
 							<input type="hidden" value="${productInfo.pid}" name="pid">
 							<div style="border-bottom: 1px solid #faeac7;margin-top:20px;padding-left: 10px;">购买数量:
-								<input id="quantity" name="quantity" value="1" maxlength="4" size="10" type="text"> </div>
+								<input id="quantity" name="count" value="1" maxlength="4" size="10" type="text"> </div>
 
 							<div style="margin:20px 0 10px 0;;text-align: center;">
 								<%--加入到购物车 --%>

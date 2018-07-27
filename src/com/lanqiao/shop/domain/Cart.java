@@ -5,15 +5,18 @@ import java.util.Map;
 
 public class Cart {
 
-	private Map<String, CartItem> map = new LinkedHashMap<String, CartItem>();
+	private Map<String, CartItem> map = new LinkedHashMap<String, CartItem>();// pid 产品项(产品 数量 小计)
+	private double total;
 
 	public Map getMap() {
 		return map;
 	}
 
-	private double total;
-
 	public double getTotal() {
+		total = 0;
+		for (CartItem cartItem : map.values()) {
+			total += cartItem.getSubtotal();
+		}
 		return total;
 	}
 
@@ -27,17 +30,18 @@ public class Cart {
 		} else {
 			map.put(pid, cartItem);
 		}
-		total += cartItem.getSubtotal();
 	}
-	
+
 	public void delCart(String pid) {
-		total -= map.get(pid).getSubtotal();
 		map.remove(pid);
 	}
-	
+
 	public void clearCart() {
-		total = 0;
 		map.clear();
+	}
+
+	public void updateCart(String pid, String count) {
+		map.get(pid).setCount(Integer.valueOf(count));
 	}
 
 }
