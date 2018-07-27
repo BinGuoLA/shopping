@@ -7,6 +7,10 @@ import com.lanqiao.shop.utils.PageUtils;
 
 public interface ProductService {
 	public List<Product> findHot();
+
 	public List<Product> findNew();
-	public PageUtils findProductByCidWithPage(String cid,int curPageNo)throws Exception;
+
+	public PageUtils findProductByCidWithPage(String cid, int curPageNo) throws Exception;
+
+	public Product findProductByPid(String pid) throws Exception;
 }

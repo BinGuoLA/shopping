@@ -26,14 +26,17 @@ public class ProductServiceImpl implements ProductService {
 		int totalRecords = productDao.totalRecords(cid);
 		int limit = 12;
 		PageUtils pageUtils = new PageUtils(curPageNo, totalRecords, limit);
-		
-	
-		List<Product> pList = productDao.findProductsByCidWithPage(cid, pageUtils.getStartIndex(), pageUtils.getEndIndex());
+
+		List<Product> pList = productDao.findProductsByCidWithPage(cid, pageUtils.getStartIndex(),
+				pageUtils.getEndIndex());
 		pageUtils.setList(pList);
-		pageUtils.setUrl("ProductServlet?method=findProductByCidWithPage&cid="+cid);
-		
+		pageUtils.setUrl("ProductServlet?method=findProductByCidWithPage&cid=" + cid);
+
 		return pageUtils;
 	}
-	
+
+	public Product findProductByPid(String pid) throws Exception {
+		return productDao.findProductByPid(pid);
+	}
 
 }

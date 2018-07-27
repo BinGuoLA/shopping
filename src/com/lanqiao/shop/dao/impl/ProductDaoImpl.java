@@ -9,16 +9,15 @@ import com.lanqiao.shop.dao.ProductDao;
 import com.lanqiao.shop.domain.Product;
 import com.lanqiao.shop.utils.DBHepler;
 
-public class ProductDaoImpl implements ProductDao{
-
+public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> findHot() {
 		List<Product> phlist = new ArrayList<>();
 		String sql = "select * from product where rownum < 10 and is_hot = 1 and pflag = 0 order by pdate desc";
 		ResultSet rs = DBHepler.commomQuery(sql, new Object[0]);
-		try {		
-			while(rs.next()) {
+		try {
+			while (rs.next()) {
 				Product product = new Product();
 				product.setCid(rs.getString("cid"));
 				product.setMarket_price(rs.getString("Market_price"));
@@ -32,11 +31,11 @@ public class ProductDaoImpl implements ProductDao{
 				product.setIs_hot(rs.getInt("is_hot"));
 				phlist.add(product);
 			}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return phlist;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return phlist;
 	}
 
 	@Override
@@ -44,8 +43,8 @@ public class ProductDaoImpl implements ProductDao{
 		List<Product> pnlist = new ArrayList<>();
 		String sql = "select * from product where pflag = 0 and rownum < 10 order by pdate";
 		ResultSet rs = DBHepler.commomQuery(sql, new Object[0]);
-		try {		
-			while(rs.next()) {
+		try {
+			while (rs.next()) {
 				Product product = new Product();
 				product.setCid(rs.getString("cid"));
 				product.setMarket_price(rs.getString("Market_price"));
@@ -59,50 +58,68 @@ public class ProductDaoImpl implements ProductDao{
 				product.setIs_hot(rs.getInt("is_hot"));
 				pnlist.add(product);
 			}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return pnlist;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pnlist;
 	}
-	
-	public int totalRecords(String cid) throws Exception{
+	//根据id查找总记录数
+	public int totalRecords(String cid) throws Exception {
 		String sql = "select count(*) from product where cid = ?";
-		Object[] obj = {cid};
+		Object[] obj = { cid };
 		int totalRecord = 0;
-		
-			
-			ResultSet rs = DBHepler.commomQuery(sql, obj);
-			if(rs.next()) {
-				totalRecord = rs.getInt(1);
-			}
-		
+
+		ResultSet rs = DBHepler.commomQuery(sql, obj);
+		if (rs.next()) {
+			totalRecord = rs.getInt(1);
+		}
+
 		return totalRecord;
 	}
-	
-	public List<Product> findProductsByCidWithPage(String cid,int startIndex,int endIndex)throws Exception{
-		
+
+	//根据cid查找分类并且分页显示
+	public List<Product> findProductsByCidWithPage(String cid, int startIndex, int endIndex) throws Exception {
+
 		List<Product> productList = new ArrayList<Product>();
-			String sql = "select * from (select rownum rn ,p.* from product p where cid = ?) p1 where rn>=? and rn<=?";
-			Object[] obj = {cid,startIndex,endIndex};
-			ResultSet rs = DBHepler.commomQuery(sql, obj);
-			while(rs.next()) {
-				Product product = new Product();
-				product.setIs_hot(rs.getInt("is_hot"));
-				product.setMarket_price(rs.getString("market_price"));
-				product.setPdate(rs.getString("pdate"));
-				product.setPdesc(rs.getString("pdesc"));
-				product.setPflag(rs.getInt("pflag"));
-				product.setPid(rs.getString("pid"));
-				product.setPimage(rs.getString("pimage"));
-				product.setPname(rs.getString("pname"));
-				product.setShop_price(rs.getString("shop_price"));
-				productList.add(product);
-			}
-		
+		String sql = "select * from (select rownum rn ,p.* from product p where cid = ?) p1 where rn>=? and rn<=?";
+		Object[] obj = { cid, startIndex, endIndex };
+		ResultSet rs = DBHepler.commomQuery(sql, obj);
+		while (rs.next()) {
+			Product product = new Product();
+			product.setIs_hot(rs.getInt("is_hot"));
+			product.setMarket_price(rs.getString("market_price"));
+			product.setPdate(rs.getString("pdate"));
+			product.setPdesc(rs.getString("pdesc"));
+			product.setPflag(rs.getInt("pflag"));
+			product.setPid(rs.getString("pid"));
+			product.setPimage(rs.getString("pimage"));
+			product.setPname(rs.getString("pname"));
+			product.setShop_price(rs.getString("shop_price"));
+			productList.add(product);
+		}
+
 		return productList;
 	}
-
 	
-
+	//根据pid查找商品
+	public Product findProductByPid(String pid)  throws Exception {
+		String sql = "select * from product where pid = ?";
+		Object[] obj = { pid };
+		ResultSet rs = DBHepler.commomQuery(sql, obj);
+		if(rs.next()) {
+			Product product = new Product();
+			product.setIs_hot(rs.getInt("is_hot"));
+			product.setMarket_price(rs.getString("market_price"));
+			product.setPdate(rs.getString("pdate"));
+			product.setPdesc(rs.getString("pdesc"));
+			product.setPflag(rs.getInt("pflag"));
+			product.setPid(rs.getString("pid"));
+			product.setPimage(rs.getString("pimage"));
+			product.setPname(rs.getString("pname"));
+			product.setShop_price(rs.getString("shop_price"));
+			return product;
+		}
+		return null;
+	}
 }

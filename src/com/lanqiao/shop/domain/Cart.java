@@ -29,5 +29,15 @@ public class Cart {
 		}
 		total += cartItem.getSubtotal();
 	}
+	
+	public void delCart(String pid) {
+		total -= map.get(pid).getSubtotal();
+		map.remove(pid);
+	}
+	
+	public void clearCart() {
+		total = 0;
+		map.clear();
+	}
 
 }
