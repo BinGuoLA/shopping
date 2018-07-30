@@ -15,6 +15,7 @@ import com.lanqiao.shop.domain.Cart;
 import com.lanqiao.shop.domain.CartItem;
 import com.lanqiao.shop.domain.Category;
 import com.lanqiao.shop.domain.Product;
+import com.lanqiao.shop.domain.Users;
 import com.lanqiao.shop.web.base.BaseServlet;
 
 import net.sf.json.JSONArray;
@@ -26,7 +27,7 @@ public class CartServlet extends BaseServlet {
 
 	public String addCart(HttpServletRequest request, HttpServletResponse response) {
 
-		String username = (String) request.getSession().getAttribute("username");
+		Users username = (Users) request.getSession().getAttribute("users");
 		if (username == null) {
 			return "/jsp/login.jsp";
 		}

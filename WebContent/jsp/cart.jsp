@@ -40,13 +40,15 @@
 	</head>
 <script type="text/javascript">
 	function updateCart(obj){
+		//var reg =/^[0-9] $/;
 		var upid = obj.getAttribute("upid");
 		var count = obj.value;
 		var subupid = 'sub'+upid;
-		if(count < 1){
-			alert('不能小于1！');
+
+		/* if(!/^[1-9]+ $/.test(2)){
+			alert('输入有误！');
 			return false;
-		}
+		} */
 		  $.post("CartServlet?method=updateCart",{pid:upid,count:count},function(msg){
 			  var updateProduct = $.parseJSON(msg);//json字符串转json数组对象
 			
@@ -55,7 +57,7 @@
 				
 				$('#points').html(total);
 				$('#total').html(total);
-				$('#'+subupid).html(subtotal);
+				$('#'+subupid).html(subtotal);//jq选择器竟然可以拼接。。
 		 });
 		  
 		
@@ -93,10 +95,10 @@
 								<td width="20%">
 									${map.value.product.shop_price}
 								</td>
-								<td width="10%">
+								<td width="10%">																	<!--竟然可以自定义属性  -->
 									<input type="text" name="count" id="count" value="${map.value.count}" upid="${map.value.product.pid}" maxlength="4" size="10" onblur="updateCart(this)"/>
 								</td>
-								<td width="15%">
+								<td width="15%">					<!--竟然可以动态拼接绑定id -->
 									<span class="subtotal" id="sub${map.value.product.pid}">${map.value.subtotal}</span>
 								</td>
 								<td>
@@ -117,8 +119,9 @@
 				</div>
 				<div style="text-align:right;margin-top:10px;margin-bottom:10px;">
 					<a href="${pageContext.request.contextPath}/CartServlet?method=clearCart" id="clear" class="clear">清空购物车</a>
-					<a href="${pageContext.request.contextPath}/jsp/order_info.jsp">
+					<a href="${pageContext.request.contextPath}/OrderServlet?method=saveOrder">
 						<%--提交表单 --%>
+						
 						<input type="submit" width="100" value="提交订单" name="submit" border="0" style="background: url('${pageContext.request.contextPath}/img/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 						height:35px;width:100px;color:white;">
 					</a>

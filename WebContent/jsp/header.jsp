@@ -37,13 +37,13 @@
 				</div>
 				<div class="col-md-3" align="right" style="padding-top:20px;line-height: 35px;">
 					<ol class="list-inline">
-						<c:if test="${empty username}">
+						<c:if test="${empty users}">
 							<li><a href="${pageContext.request.contextPath}/UserServlet?method=loginUI">登录</a></li>
 							<li><a href="${pageContext.request.contextPath}/UserServlet?method=registerUI">注册</a></li>
 						</c:if>
 						
-						<c:if test="${!empty username}">
-							欢迎，${username}
+						<c:if test="${!empty users}">
+							欢迎，${users.username}
 							<li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
 							<li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
 							<li><a href="${pageContext.request.contextPath}/jsp/order_list.jsp">我的订单</a></li>

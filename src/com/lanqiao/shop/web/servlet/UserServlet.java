@@ -46,10 +46,18 @@ public class UserServlet extends BaseServlet {
 		for (int i = 0; i < cookies.length; i++) {
 			if(cookies[i].getName().equals("autoLogin")) {
 				//设置session的username的保存
+				String username = cookies[i].getValue().split("#")[0];
+				String password = cookies[i].getValue().split("#")[1];
 				
-				request.getSession().setAttribute("username",cookies[i].getValue().split("#")[0]);//session保存的值，从cookie查找
+				Users users = usersService.userLogin(username, password);
+				
+				if(users != null) {
+				request.getSession().setAttribute("users",users);//session保存的值，从cookie查找
 				//进入到登录后的界面
 				return "/jsp/index.jsp";
+				}else {
+					return "/jsp/login.jsp";	
+				}
 			}
 			
 			if(cookies[i].getName().equals("remUser")) {
@@ -97,8 +105,6 @@ public class UserServlet extends BaseServlet {
 			//2、调用service层userLogin方法
 			Users users = usersService.userLogin(username.trim(), md5Pwd);
 			if(users!=null) {
-				
-
 				if(users.getState()==1) {
 					
 					String autoLogin = request.getParameter("autoLogin");
@@ -132,7 +138,7 @@ public class UserServlet extends BaseServlet {
 						response.addCookie(ck);
 					}
 				
-					seesion.setAttribute("username", users.getName());
+					seesion.setAttribute("users", users);
 					return "/jsp/index.jsp";
 				}else {
 					request.setAttribute("logininfo","用户未激活！");

@@ -1,17 +1,17 @@
 package com.lanqiao.shop.domain;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Cart {
 
-	private Map<String, CartItem> map = new LinkedHashMap<String, CartItem>();// pid 产品项(产品 数量 小计)
+	private Map<String, CartItem> map = new HashMap<String, CartItem>();// pid 产品项(产品 数量 小计)
 	private double total;
-
-	public Map getMap() {
+	public Map<String, CartItem> getMap() {
 		return map;
 	}
 
+	
 	public double getTotal() {
 		total = 0;
 		for (CartItem cartItem : map.values()) {
