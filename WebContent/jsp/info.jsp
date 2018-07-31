@@ -8,6 +8,6 @@
 <title>Document</title>
 </head>
 <body>
-	<h1>激活成功，请<a href="47.106.162.209/shopping/UserServlet?method=loginUI">登录</a></h1>
+	<h1>激活成功，请<a href="UserServlet?method=loginUI">登录</a></h1>
 </body>
 </html>

@@ -14,9 +14,9 @@ public class SendJMail {
 		public static boolean sendMail(String email, String emailMsg) {
 			System.out.println("emailMsg"+emailMsg);
 		//lidongmaogodlike@163.com
-			String from = "13397716393@163.com"; 				// 邮件发送人的邮件地址
+			String from = "18078454542@163.com"; 				// 邮件发送人的邮件地址
 			String to = email; 										// 邮件接收人的邮件地址
-			final String username = "13397716393@163.com";  	//发件人的邮件帐户
+			final String username = "18078454542@163.com";  	//发件人的邮件帐户
 			final String password = "qq354731612";   	  					//发件人的邮件密码
 			final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
