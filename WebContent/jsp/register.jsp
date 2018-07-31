@@ -76,7 +76,7 @@
 			 <div class="form-group">
 			    <label for="username" class="col-sm-2 control-label">用户名</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="username" name="username" value="tom" placeholder="请输入用户名" onblur="checkUsersExistance()">
+			      <input type="text" class="form-control" id="username" name="username" value="" placeholder="请输入用户名" onblur="checkUsersExistance()">
 			    </div>
 			    <div class="col-sm-3">
 			      <span id="usernameinfo"></span>
@@ -85,31 +85,31 @@
 			   <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
 			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" name="password" value="123" placeholder="请输入密码">
+			      <input type="password" class="form-control" id="inputPassword3" name="password" value="" placeholder="请输入密码">
 			    </div>
 			  </div>
 			   <div class="form-group">
 			    <label for="confirmpwd" class="col-sm-2 control-label">确认密码</label>
 			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="confirmpwd" name="repassword" value="123" placeholder="请输入确认密码">
+			      <input type="password" class="form-control" id="confirmpwd" name="repassword" value="" placeholder="请输入确认密码">
 			    </div>
 			  </div>
 			   <div class="form-group">
 			    <label for="telephone3" class="col-sm-2 control-label">电话号码</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="inputTelephone3" name="telephone" value="13888888888" placeholder="请输入电话码号">
+			      <input type="text" class="form-control" id="inputTelephone3" name="telephone" value="" placeholder="请输入电话码号">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-6">
-			      <input type="email" class="form-control" id="inputEmail3" name="email" value="lipengfei624@126.com" placeholder="Email">
+			      <input type="email" class="form-control" id="inputEmail3" name="email" value="" placeholder="Email">
 			    </div>
 			  </div>
 			 <div class="form-group">
 			    <label for="usercaption" class="col-sm-2 control-label">姓名</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="usercaption" name="name" value="小张" placeholder="请输入姓名">
+			      <input type="text" class="form-control" id="usercaption" name="name" value="" placeholder="请输入姓名">
 			    </div>
 			  </div>
 			  <div class="form-group opt">  

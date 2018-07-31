@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>XXX网络商城</title>
+		<title>狗东商城</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
 		<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
@@ -36,10 +36,9 @@
 					</ul>
 				</div>
 				<div style="text-align: center;margin-top: 5px;margin-bottom:20px;">
-					国信蓝桥教育科技（北京）股份有限公司 京公网安备 11010802020352号 电话：010-59217315 © Copyright 2016. 蓝桥网版权所有 | 京ICP备11024192号
+					受骗概不负责
 				</div>
 			</div>
-		</div>
 	</body>
 
 </html>

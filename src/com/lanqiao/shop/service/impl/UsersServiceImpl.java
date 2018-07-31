@@ -12,7 +12,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public void userRegister(Users users) {
 		usersDao.register(users);
-		SendJMail.sendMail(users.getEmail(), " 注册成功，请<a href='http://localhost:8080/shopping/UserServlet?method=userActive&code="+users.getCode()+"'>激活</a>后登录");//email：接收者的邮箱  emailMsg：发送邮箱的内容
+		SendJMail.sendMail(users.getEmail(), " 注册成功，请<a href='47.106.162.209/shopping/UserServlet?method=userActive&code="+users.getCode()+"'>激活</a>后登录");//email：接收者的邮箱  emailMsg：发送邮箱的内容
 
 	}
 	//用户激活

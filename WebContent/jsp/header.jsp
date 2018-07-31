@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>XXX网络商城</title>
+		<title>狗东商城</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
 		<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
@@ -31,7 +31,7 @@
             -->
 			<div class="container-fluid">
 				<div class="col-md-4">
-					<h1 style="color: #28A4C9; font-weight: bold;">蓝&nbsp;&nbsp;桥</h1>
+					<h1 style="color: #28A4C9; font-weight: bold;">狗&nbsp;&nbsp;东&nbsp;&nbsp;商&nbsp;&nbsp;城</h1>
 				</div>
 				<div class="col-md-5">
 				</div>

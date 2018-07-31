@@ -1,10 +1,14 @@
 package com.lanqiao.shop.web.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,7 +85,7 @@ public class ProductServlet extends BaseServlet {
 		 */
 	}
 
-	public String findProductByCidWithPage(HttpServletRequest request, HttpServletResponse response) {
+	public String findProductByCidWithPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String cid = request.getParameter("cid");
 		String curPageNo = request.getParameter("num");
 
@@ -91,12 +95,35 @@ public class ProductServlet extends BaseServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		Cookie[] cookies = request.getCookies();
+		List<Product> historyPdList = new ArrayList<>();
+		for (int i = 0; cookies != null && i < cookies.length; i++){
+			
+			//找到我们想要的cookie
+			if (cookies[i].getName().equals("historyCookie")){
+				String[] pids = cookies[i].getValue().split("\\-");
+				
+				//得到cookie中存在的id，展现浏览过的商品
+				for (String pid : pids){
+					historyPdList.add(productService.findProductByPid(pid));
+				}
+			}
+		}
+		request.setAttribute("historyPdList", historyPdList);
+		
+		
 		return "/jsp/product_list.jsp";
 	}
 	
 	public String findProductByPid(HttpServletRequest request, HttpServletResponse response) {
 		String pid = request.getParameter("pid");
 		Product productInfo;
+		//浏览历史记录储存
+		String cookieValue = buildCookie(pid, request);//产生想要的cookie中的值
+		Cookie cookie = new Cookie("historyCookie", cookieValue);
+		cookie.setMaxAge(1*24*3600);
+		response.addCookie(cookie);
 		try {
 			productInfo = productService.findProductByPid(pid);
 			request.setAttribute("productInfo", productInfo);
@@ -106,6 +133,45 @@ public class ProductServlet extends BaseServlet {
 		}
 		
 		return "/jsp/product_info.jsp";
-	} 
+	}
+	
+private String buildCookie(String pid, HttpServletRequest request) {
+		
+		String historyCookie = null;
+		
+		//得到请求中带来的cookie值
+		Cookie[] cookies = request.getCookies();
+		for (int i = 0; cookies != null && i < cookies.length; i++){
+			if (cookies[i].getName().equals("historyCookie") ){
+				historyCookie = cookies[i].getValue();
+			}
+		}
+		
+		//如果为空返回当前商品的id
+		if (historyCookie == null){
+			return pid;
+		}
+		
+		LinkedList<String> list = new LinkedList<String>(Arrays.asList((historyCookie.split("\\-"))));
+		
+		//对不同的情况进行分析返回id的值
+		if (list.contains(pid)){
+			list.remove(pid);
+		}else{
+			if (list.size() >= 7){
+				list.removeLast();
+			}
+		}
+		list.addFirst(pid);
+		
+		StringBuffer sb = new StringBuffer();
+		for (String sid : list){
+			sb.append(sid + "-");
+		}
+		sb.deleteCharAt(sb.length()-1);
+		
+		return sb.toString();
+	}
+
 
 }
