@@ -10,4 +10,5 @@ public interface UsersService {
 	//修改用户信息
 	public void updateUsers(Users users);
 	public Users userLogin(String username, String password);
+	public boolean checkUsersExistance(String username);
 }

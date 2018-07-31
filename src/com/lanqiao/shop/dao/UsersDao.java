@@ -9,4 +9,6 @@ public interface UsersDao {
 		public Users  userActive(String code);
 		public void updateUsers(Users users);
 		public Users userLogin(String username, String password);
+
+		public boolean checkUsersExistance(String username);
 }

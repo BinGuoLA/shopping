@@ -3,6 +3,7 @@ package com.lanqiao.shop.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 import com.lanqiao.shop.dao.UsersDao;
@@ -18,7 +19,6 @@ public class UserDaoImpl implements UsersDao {
 		Object[] obj= {users.getUuid(),users.getUsername(),users.getPassword(),users.getName(),users.getEmail(),users.getTelephone(),new java.sql.Date(users.getBirthday().getTime()),users.getSex(),users.getState(),users.getCode()};
 		
 		DBHepler.commom(sql, obj);
-		
 	}
 
 	@Override
@@ -53,10 +53,7 @@ public class UserDaoImpl implements UsersDao {
 			DBHepler.getClose(rs, ps, conn);
 		}
 		
-		
 		return null;
-		
-		
 	}
 	@Override
 	public void updateUsers(Users users) {
@@ -65,7 +62,6 @@ public class UserDaoImpl implements UsersDao {
 		Object[] obj= {users.getUsername(),users.getPassword(),users.getName(),users.getEmail(),users.getTelephone(),new java.sql.Date(users.getBirthday().getTime()),users.getSex(),users.getState(),users.getCode(),users.getUuid()};
 		
 		DBHepler.commom(sql, obj);
-		
 	}
 	@Override
 	public Users userLogin(String username, String password) {
@@ -100,6 +96,22 @@ public class UserDaoImpl implements UsersDao {
 			DBHepler.getClose(rs, ps, conn);
 		}
 		return null;
+	}
+	
+	public boolean checkUsersExistance(String username) {
+		String sql = "select * from users where username = ?";
+
+		Object[] obj= {username};
+		
+		ResultSet rs = DBHepler.commomQuery(sql, obj);
+		try {
+			if(rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

@@ -21,8 +21,8 @@ import com.lanqiao.shop.web.base.BaseServlet;
 /**
  * Servlet implementation class checkImgServlet
  */
-@WebServlet("/checkImgServlet")
-public class checkImgServlet extends BaseServlet {
+@WebServlet("/CheckImgServlet")
+public class CheckImgServlet extends BaseServlet {
 	public void checkImag(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		int width = 120;
 		int height = 30;

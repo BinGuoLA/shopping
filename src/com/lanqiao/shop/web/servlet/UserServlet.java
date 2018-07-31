@@ -1,5 +1,6 @@
 package com.lanqiao.shop.web.servlet;
 
+import com.lanqiao.shop.domain.Cart;
 import com.lanqiao.shop.domain.Users;
 import com.lanqiao.shop.service.UsersService;
 import com.lanqiao.shop.service.impl.UsersServiceImpl;
@@ -7,6 +8,9 @@ import com.lanqiao.shop.utils.MD5Util;
 import com.lanqiao.shop.utils.MyBeanUtils;
 import com.lanqiao.shop.utils.UUIDUtils;
 import com.lanqiao.shop.web.base.BaseServlet;
+
+import net.sf.json.JSONArray;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -181,6 +185,26 @@ public class UserServlet extends BaseServlet {
 			
 			return "/jsp/index.jsp";
 		}
+		
+		public void checkUsersExistance(HttpServletRequest request, HttpServletResponse response) {
+			response.setContentType("text/html;charset=utf-8");//设置ajax乱码
+			String username = request.getParameter("username");
+			
+			boolean flag = usersService.checkUsersExistance(username);
+			
+				try {
+					if(flag) {
+						response.getWriter().print("<font color='red' size='5'>用户名已经存在</font>");
+					}else {
+						response.getWriter().print("<font color='green' size='5'>用户名可用使用</font>");
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
 	
 
-}
+

@@ -33,5 +33,9 @@ public class UsersServiceImpl implements UsersService {
 		return usersDao.userLogin(username,password);
 		
 	}
+	@Override
+	public boolean checkUsersExistance(String username) {
+		return usersDao.checkUsersExistance(username);
+	}
 
 }

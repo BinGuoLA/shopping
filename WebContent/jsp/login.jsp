@@ -42,7 +42,7 @@ font {
  <script>
  function change(){
 		var img1 = document.getElementById("checkImg");
-		img1.src="${pageContext.request.contextPath}/checkImgServlet?method=checkImag&time="+new Date().getTime();
+		img1.src="${pageContext.request.contextPath}/CheckImgServlet?method=checkImag&time="+new Date().getTime();  //加上时间戳防止浏览器缓存图片
 	}
  </script>
 <body>
@@ -82,7 +82,7 @@ font {
       <input type="text" class="form-control" id="inputPassword3" placeholder="请输入验证码" name="usercheckcode">
     </div>
     <div class="col-sm-3">
-      <img id="checkImg" src="${pageContext.request.contextPath}/checkImgServlet?method=checkImag" onclick="change()" title="点击更换验证码">
+      <img id="checkImg" src="${pageContext.request.contextPath}/CheckImgServlet?method=checkImag" onclick="change()" title="点击更换验证码">
     </div>
     
   </div>

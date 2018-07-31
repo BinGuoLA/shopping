@@ -26,7 +26,7 @@
 	 float:left; */
  }
  
-font {
+.registerlabel {
     color: #3164af;
     font-size: 18px;
     font-weight: normal;
@@ -42,8 +42,21 @@ font {
  <script>
  function change(){
 		var img1 = document.getElementById("checkImg");
-		img1.src="${pageContext.request.contextPath}/checkImgServlet?method=checkImag&time="+new Date().getTime();
+		img1.src="${pageContext.request.contextPath}/CheckImgServlet?method=checkImag&time="+new Date().getTime();
 	}
+ 
+ 
+	function checkUsersExistance(){
+		
+		var username = $('#username').val();
+
+		  $.post("UserServlet?method=checkUsersExistance",{username:username},function(msg){
+				$('#usernameinfo').html(msg);
+		 });
+		  
+		
+	}
+
  </script>
  </head>
 <body>
@@ -57,13 +70,16 @@ font {
 	<div class="col-md-2"></div>
 	
 	<div class="col-md-8" style="background:#fff;padding:40px 80px;margin:30px;border:7px solid #ccc;">
-		<font>会员注册</font>USER REGISTER
+		<font class="registerlabel">会员注册</font>USER REGISTER
 		<form class="form-horizontal" action="${pageContext.request.contextPath}/UserServlet?method=userRegister" style="margin-top:5px;" method="post">
 			 <input type="hidden" name="method" value="userRegister"/>
 			 <div class="form-group">
 			    <label for="username" class="col-sm-2 control-label">用户名</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="username" name="username" value="tom" placeholder="请输入用户名">
+			      <input type="text" class="form-control" id="username" name="username" value="tom" placeholder="请输入用户名" onblur="checkUsersExistance()">
+			    </div>
+			    <div class="col-sm-3">
+			      <span id="usernameinfo"></span>
 			    </div>
 			  </div>
 			   <div class="form-group">
@@ -120,7 +136,7 @@ font {
 			      
 			    </div>
 			    <div class="col-sm-2">
-			    <img id="checkImg" src="${pageContext.request.contextPath}/checkImgServlet?method=checkImag" onclick="change()" title="点击更换验证码">
+			    <img id="checkImg" src="${pageContext.request.contextPath}/CheckImgServlet?method=checkImag" onclick="change()" title="点击更换验证码">
 			    </div>
 			     <div class="col-sm-3">
 			   	  <span id="checkinfo">${checkinfo} </span>
