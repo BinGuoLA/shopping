@@ -34,6 +34,7 @@ public class Test {
 	System.out.println(DBHepler.getConn());	*/
 		//SendJMail.sendMail("13397716393@163.com", " 注册成功，请<a href='www.baidu.com'>激活</a>后登录");//email：接收者的邮箱  emailMsg：发送邮箱的内容
 
+	
 	}
 	
 }

@@ -87,6 +87,13 @@ public class ProductDaoImpl implements ProductDao {
 	public int totalRecordsByName(String search) throws Exception {
 		int totalRecord = 0;
 
+		String[] searchs = search.split("");
+		StringBuilder sb = new StringBuilder();
+		sb.append("%");
+		for (String string : searchs) {
+			sb.append(string+"%");
+		}
+		
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -94,7 +101,7 @@ public class ProductDaoImpl implements ProductDao {
 			conn = DBHepler.getConn();
 			String sql = "select count(*) from product where pname like ?";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, "%" + search + "%");
+			ps.setString(1, sb.toString());
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				totalRecord = rs.getInt(1);
@@ -160,12 +167,19 @@ public class ProductDaoImpl implements ProductDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		String[] searchs = search.split("");
+		StringBuilder sb = new StringBuilder();
+		sb.append("%");
+		for (String string : searchs) {
+			sb.append(string+"%");
+		}
+		
 		List<Product> productList = new ArrayList<Product>();
 		String sql = "select * from (select rownum rn ,p.* from product p where pname like ?) p1 where rn>=? and rn<=?";
 		
 		conn = DBHepler.getConn();
 		ps = conn.prepareStatement(sql);
-		ps.setString(1, "%" + search + "%");
+		ps.setString(1, sb.toString());
 		ps.setInt(2, startIndex);
 		ps.setInt(3, endIndex);
 		rs = ps.executeQuery();
