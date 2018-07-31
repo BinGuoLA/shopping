@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -78,7 +79,6 @@ public class OrderServlet extends BaseServlet {
 	}
 
 	public String findAllOrderByUid(HttpServletRequest request, HttpServletResponse response){
-		System.out.println("=======findOrderByUid=======");
 		try {
 			Users users = (Users) request.getSession().getAttribute("users");
 			if (users == null) {
@@ -88,11 +88,32 @@ public class OrderServlet extends BaseServlet {
 			
 			PageUtils pageUtils = orderService.findAllOrderByUid(users, Integer.valueOf(curPageNo));
 			request.setAttribute("page", pageUtils);
+			request.getSession().setAttribute("orderList", pageUtils.getList());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return "/jsp/order_list.jsp";
+	}
+	
+	public String findOrderDesc(HttpServletRequest request, HttpServletResponse response) {
+		String oid = request.getParameter("oid");
+		Order order = findOrderByOid(request, response, oid);
+	
+		return "jsp/order_info.jsp";
+	}
+	
+	public Order findOrderByOid(HttpServletRequest request, HttpServletResponse response,String oid) {
+		List<Order> orderList = (List<Order>)request.getSession().getAttribute("orderList");
+		for(Order o : orderList) {
+			if(o.getOid().equals(oid)) {
+				//把订单对象保存request作用域中
+				request.setAttribute("order", o);
+				return o;
+			}
+		}
+		return null;
+
 	}
 }
 

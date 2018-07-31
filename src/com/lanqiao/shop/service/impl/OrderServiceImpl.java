@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
 			
 			
 			pageUtils.setList(oList);
-			pageUtils.setUrl("OrderServlet?method=findOrderByUid&uid=" + users.getUuid());
+			pageUtils.setUrl("OrderServlet?method=findAllOrderByUid&uid=" + users.getUuid());
 
 			return pageUtils;
 		}

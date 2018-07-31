@@ -38,16 +38,16 @@
 						<c:forEach items="${page.list}" var="list">
 							<tr class="success">
 								<th colspan="4">订单编号：${list.oid }&nbsp;&nbsp;
-								<c:if test="list.state == 1">
-									<a href="#">付款</a>
+								<c:if test="${list.state == 1}">
+									<a href="${pageContext.request.contextPath}/OrderServlet?method=findOrderDesc&oid=${list.oid }">付款</a>
 								</c:if>
-								<c:if test="list.state == 2">
+								<c:if test="${list.state == 2}">
 									<a href="#">未发货</a>
 								</c:if>
-								<c:if test="list.state == 3">
+								<c:if test="${list.state == 3}">
 									<a href="#">已发货</a>
 								</c:if>
-								<c:if test="list.state == 4">
+								<c:if test="${list.state == 4}">
 									<a href="#">确认收货</a>
 								</c:if>
 								</th>
