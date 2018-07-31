@@ -32,8 +32,20 @@ font {
     font-weight: normal;
     padding: 0 10px;
 }
+
+#checkinfo{
+	color: red;
+	margin-left: 20px;
+	font-size: 20px;
+}
  </style>
-</head>
+ <script>
+ function change(){
+		var img1 = document.getElementById("checkImg");
+		img1.src="${pageContext.request.contextPath}/checkImgServlet?method=checkImag&time="+new Date().getTime();
+	}
+ </script>
+ </head>
 <body>
 <%@ include file="header.jsp" %>
 
@@ -104,12 +116,15 @@ font {
 			  <div class="form-group">
 			    <label for="date" class="col-sm-2 control-label">验证码</label>
 			    <div class="col-sm-3">
-			      <input type="text" class="form-control"  >
+			      <input type="text" class="form-control" name="usercheckcode" >
 			      
 			    </div>
 			    <div class="col-sm-2">
-			    <img src="${pageContext.request.contextPath}/img/captcha.jhtml"/>
+			    <img id="checkImg" src="${pageContext.request.contextPath}/checkImgServlet?method=checkImag" onclick="change()" title="点击更换验证码">
 			    </div>
+			     <div class="col-sm-3">
+			   	  <span id="checkinfo">${checkinfo} </span>
+			   	 </div>
 			    
 			  </div>
 			 

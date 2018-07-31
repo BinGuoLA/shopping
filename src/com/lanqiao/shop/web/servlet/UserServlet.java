@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
  * Servlet implementation class UserServlet
  */
@@ -30,7 +31,7 @@ public class UserServlet extends BaseServlet {
     }
     //跳转到注册页面
 	public String registerUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//判断cookie是否存在,如果存在，则直接进行登录，否则进入到登录界面(login.jsp)
+		
 				
 				return "/jsp/register.jsp";
 	}
@@ -41,6 +42,7 @@ public class UserServlet extends BaseServlet {
 		}
 	//跳转到登录页面
 	public String loginUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//判断cookie是否存在,如果存在，则直接进行登录，否则进入到登录界面(login.jsp)
 		Cookie[] cookies =   request.getCookies();//默认存在sessionID的cookie   ,autoLogin
 		
 		for (int i = 0; i < cookies.length; i++) {
@@ -70,6 +72,14 @@ public class UserServlet extends BaseServlet {
 	}
 	//用户注册
 	public String userRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String usercheckcode = request.getParameter("usercheckcode");
+		String checkcode = (String) request.getSession().getAttribute("checkcode");
+		if(!checkcode.equalsIgnoreCase(usercheckcode)){
+			request.setAttribute("checkinfo", "验证码错误");
+			return "/jsp/register.jsp";
+		}
+		
 		Map<String,String[]> map=request.getParameterMap();
 		
 		//拷贝数据，相当于给属性赋值
@@ -97,6 +107,16 @@ public class UserServlet extends BaseServlet {
 		
 		//用户登录
 		public String userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			String usercheckcode = request.getParameter("usercheckcode");
+			String checkcode = (String) request.getSession().getAttribute("checkcode");
+			System.out.println(usercheckcode);
+			System.out.println(checkcode);
+			if(!checkcode.equalsIgnoreCase(usercheckcode)){
+				request.setAttribute("logininfo", "验证码错误");
+				return "/jsp/login.jsp";
+			}
+			
 			String username=request.getParameter("username");
 			String password=request.getParameter("password");
 			HttpSession seesion = request.getSession();
