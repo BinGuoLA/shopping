@@ -39,4 +39,19 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.findProductByPid(pid);
 	}
 
+	@Override
+	public PageUtils findProductsByName(String search, int curPageNo) throws Exception {
+		int totalRecords = productDao.totalRecordsByName(search);
+		int limit = 12;
+		PageUtils pageUtils = new PageUtils(curPageNo, totalRecords, limit);
+
+		List<Product> pList = productDao.findProductsByName(search, pageUtils.getStartIndex(),
+					pageUtils.getEndIndex());
+		
+		pageUtils.setList(pList);
+		pageUtils.setUrl("ProductServlet?method=findProductsByName&search=" + search);
+
+		return pageUtils;
+	}
+
 }

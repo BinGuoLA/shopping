@@ -135,7 +135,7 @@ public class ProductServlet extends BaseServlet {
 		return "/jsp/product_info.jsp";
 	}
 	
-private String buildCookie(String pid, HttpServletRequest request) {
+		private String buildCookie(String pid, HttpServletRequest request) {
 		
 		String historyCookie = null;
 		
@@ -171,6 +171,21 @@ private String buildCookie(String pid, HttpServletRequest request) {
 		sb.deleteCharAt(sb.length()-1);
 		
 		return sb.toString();
+	}
+
+	public String findProductsByName(HttpServletRequest request, HttpServletResponse response) throws NumberFormatException, Exception {
+		
+		String search = request.getParameter("search");
+		
+		String curPageNo = request.getParameter("num");
+		
+		System.out.println("search:"+search);
+		System.out.println(curPageNo);
+		PageUtils pageUtils = productService.findProductsByName(search,Integer.valueOf(curPageNo));
+		
+		request.setAttribute("page", pageUtils);
+		
+		return "/jsp/product_list.jsp";
 	}
 
 

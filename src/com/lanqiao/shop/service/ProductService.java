@@ -13,4 +13,6 @@ public interface ProductService {
 	public PageUtils findProductByCidWithPage(String cid, int curPageNo) throws Exception;
 
 	public Product findProductByPid(String pid) throws Exception;
+
+	public PageUtils findProductsByName(String search, int curPageNo) throws Exception;
 }

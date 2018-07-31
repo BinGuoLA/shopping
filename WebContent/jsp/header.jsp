@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -77,11 +77,11 @@
 							<ul class="nav navbar-nav" id="nav_ul">
 								
 							</ul>
-							<form class="navbar-form navbar-right" role="search">
+							<form action="ProductServlet?method=findProductsByName&num=1" class="navbar-form navbar-right" role="search" method="post">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Search">
+									<input type="text" class="form-control" placeholder="Search" name="search">
 								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
+								<button type="submit" class="btn btn-default">查找</button>
 							</form>
 
 						</div>
