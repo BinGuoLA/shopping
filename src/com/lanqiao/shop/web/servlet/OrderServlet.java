@@ -1,6 +1,7 @@
 package com.lanqiao.shop.web.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -19,6 +20,7 @@ import com.lanqiao.shop.domain.OrderItem;
 import com.lanqiao.shop.domain.Users;
 import com.lanqiao.shop.service.OrderService;
 import com.lanqiao.shop.service.impl.OrderServiceImpl;
+import com.lanqiao.shop.utils.PageUtils;
 import com.lanqiao.shop.utils.UUIDUtils;
 import com.lanqiao.shop.web.base.BaseServlet;
 
@@ -73,6 +75,24 @@ public class OrderServlet extends BaseServlet {
 			e.printStackTrace();
 		}
 		return  null;
+	}
+
+	public String findAllOrderByUid(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("=======findOrderByUid=======");
+		try {
+			Users users = (Users) request.getSession().getAttribute("users");
+			if (users == null) {
+				return "/jsp/login.jsp";
+			}
+			String curPageNo = request.getParameter("num");
+			
+			PageUtils pageUtils = orderService.findAllOrderByUid(users, Integer.valueOf(curPageNo));
+			request.setAttribute("page", pageUtils);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/jsp/order_list.jsp";
 	}
 }
 

@@ -14,7 +14,7 @@
 	</head>
  <script type="text/javascript">
 	 $(function(){
-			$.post("CategoryServlet",{method:"findCategoryByCid"},function(msg){
+			$.post("${pageContext.request.contextPath}/CategoryServlet",{method:"findCategoryByCid"},function(msg){
 				var CategoryList = $.parseJSON(msg);//json字符串转json数组对象				
 				$.each(CategoryList,function(i,category){
 					$("#nav_ul").append("<li><a href='ProductServlet?method=findProductByCidWithPage&num=1&cid="+category.cid+"'>"+category.cname+"</a></li>");
@@ -46,7 +46,7 @@
 							欢迎，${users.username}
 							<li><a href="${pageContext.request.contextPath}/UserServlet?method=logout">退出</a></li>
 							<li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
-							<li><a href="${pageContext.request.contextPath}/jsp/order_list.jsp">我的订单</a></li>
+							<li><a href="${pageContext.request.contextPath}/OrderServlet?method=findAllOrderByUid&num=1">我的订单</a></li>
 						</c:if>
 
 					</ol>

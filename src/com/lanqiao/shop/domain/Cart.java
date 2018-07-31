@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cart {
-
 	private Map<String, CartItem> map = new HashMap<String, CartItem>();// pid 产品项(产品 数量 小计)
 	private double total;
 	public Map<String, CartItem> getMap() {

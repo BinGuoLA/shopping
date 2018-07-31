@@ -90,7 +90,7 @@
 									<img src="${pageContext.request.contextPath}/${map.value.product.pimage}" width="70" height="60">
 								</td>
 								<td width="30%">
-									<a target="_blank" href="ProductServlet?method=findProductByPid&pid=${map.value.product.pid}">${map.value.product.pname}</a>
+									<a target="_blank" href="${pageContext.request.contextPath}/ProductServlet?method=findProductByPid&pid=${map.value.product.pid}">${map.value.product.pname}</a>
 								</td>								
 								<td width="20%">
 									${map.value.product.shop_price}
@@ -102,7 +102,7 @@
 									<span class="subtotal" id="sub${map.value.product.pid}">${map.value.subtotal}</span>
 								</td>
 								<td>
-									<a href="CartServlet?method=delCart&pid=${map.value.product.pid}" class="delete">删除</a>
+									<a href="${pageContext.request.contextPath}/CartServlet?method=delCart&pid=${map.value.product.pid}" class="delete">删除</a>
 								</td>
 							</tr>
 							</c:forEach>

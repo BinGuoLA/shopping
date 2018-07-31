@@ -28,6 +28,9 @@ public class Test {
 		for (Integer integer : asList) {
 			System.out.println(integer);
 		}*/
+		/*System.out.println(DBHepler.getConn());	
+		System.out.println(DBHepler.getConn());	
+	System.out.println(DBHepler.getConn());	*/
 	}
 	
 }
